@@ -57,4 +57,18 @@ class LinkedListTest < Minitest::Test
     assert_equal "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family", @linked_list.to_string
   end
 
+  def test_it_can_find
+    @linked_list.append("McKinney")
+    @linked_list.append("Lawson")
+    @linked_list.append("Brooks")
+    @linked_list.append("Henderson")
+    expected_string = "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family"
+    assert_equal expected_string, @linked_list.to_string
+
+    assert_equal "The Brooks family", @linked_list.find(2, 1)
+    assert_equal "The Lawson family, followed by the Brooks family, followed by the Henderson family", @linked_list.find(1, 3)
+    assert_equal true, @linked_list.includes?("Brooks")
+    assert_equal false, @linked_list.includes?("Chapman")
+  end
+
 end
